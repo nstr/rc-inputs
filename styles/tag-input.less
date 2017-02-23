@@ -1,0 +1,75 @@
+
+.tag-input {
+  width: 100%;
+  height: auto;
+  min-height: 35px;
+  display: inline-block;
+  background: #fff;
+
+  .tag {
+    position: relative;
+    float: left;
+    display: inline-block;
+    padding: 4px 6px 4px 8px;
+    background: @yellow;
+    margin: 4px;
+    border-radius: 3px;
+    //float: left;
+
+    .name {
+      text-decoration: none;
+      color: @text-color;
+      float: left;
+      font-size: 0.9em;
+      padding: 2px;
+    }
+
+    .btn-close {
+      position: relative;
+      display: inline-block;
+      float: left;
+      width: 14px;
+      height: 14px;
+      margin-top: 1px;
+      margin-left: 10px;
+
+      &::before {
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        left: 50%;
+        content: '';
+        width: 1px;
+        height: 100%;
+        background-color: @text-color;
+        transform: rotate(225deg);
+      }
+
+      &::after {
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        left: 50%;
+        content: '';
+        width: 1px;
+        height: 100%;
+        background-color: @text-color;
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  .input-area {
+    display: inline-block;
+    float: left;
+    padding: 7px 4px;
+
+    input {
+      height: 100%;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

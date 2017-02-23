@@ -1,0 +1,27 @@
+import React from "react";
+
+import TextInput from "./text-input.jsx";
+
+function validateEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+export class EmailInput extends TextInput{
+  constructor(props) {
+    super(props);
+  }
+  onValid(e) {
+    if (!!this.props.onValid) {
+      this.props.onValid(validateEmail(e.target.value), e);
+    }
+  }
+}
+
+EmailInput.propTypes = {
+  type: React.PropTypes.string.isRequired
+};
+
+EmailInput.defaultProps = {
+  type: "email"
+};

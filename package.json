@@ -1,0 +1,40 @@
+{
+  "name": "rc-inputs",
+  "version": "0.0.1",
+  "description": "Special inputs for React JS",
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "babel src --out-file lib/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njnest/react-inputs.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "rc-inputs",
+    "react-input",
+    "react-inputs",
+    "react-tag-list",
+    "email-input",
+    "password-input"
+  ],
+  "peerDependencies": {
+    "classnames": "^2.2.5",
+    "react": "0.13.x || 0.14.x || 15.x.x"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0"
+  },
+  "author": "Nick Nesterov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/njnest/react-inputs/issues"
+  },
+  "homepage": "https://github.com/njnest/react-inputs#readme"
+}
