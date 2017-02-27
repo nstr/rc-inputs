@@ -8,7 +8,7 @@ export default class TagInput extends React.Component{
       tags: this.props.tags ? this.props.tags : []
     };
     this.addTag = this.addTag.bind(this);
-    this.removeThis = this.removeThis.bind(this);
+    this.onDelete = this.onDelete.bind(this);
     this.handelTag = this.handelTag.bind(this);
   }
   componentWillReceiveProps(nextProps) {
@@ -18,22 +18,33 @@ export default class TagInput extends React.Component{
       });
     }
   }
-  addTag(e) {
-    if(e.keyCode === 13) {
-      this.props.addTag({name: this.state.tagName, type: "tag"});
-      this.setState({tagName: ""});
-    }
-  }
-  removeThis(tags, index) {
-    this.props.removeThis(tags, index);
-  }
   handelTag(e) {
     this.setState({tagName: e.target.value});
+  }
+  addTag(e) {
+    if(e.keyCode === 13) {
+      this.setState({
+        tagName: "",
+        tags: this.state.tags.concat([{name: this.state.tagName}])
+      });
+      if (this.props.addTag) this.props.addTag({name: this.state.tagName});
+    }
+  }
+  onDelete(actionIndex, tag) {
+    let tags = this.state.tags.filter((tag, tagIndex) => {
+      if (tagIndex !== actionIndex) {
+        return tag;
+      }
+    });
+    this.setState({
+      tags
+    });
+    if (this.props.onDelete) this.props.onDelete(actionIndex, tag, tags);
   }
   render() {
 
     return(
-      <ul className="tag-input">
+      <ul className="rc-tag-input">
         {
           this.state.tags.map((tag, index) => {
             let props = {};
@@ -46,7 +57,7 @@ export default class TagInput extends React.Component{
                 <a className="name" {...props}>
                   {tag.name}
                 </a>
-                <a onClick={this.removeThis.bind(this, tag, index)} className="btn-close" />
+                <a onClick={this.onDelete.bind(this, index, tag)} className="btn-close" />
               </li>
             );
           })

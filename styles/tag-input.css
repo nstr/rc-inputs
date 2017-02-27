@@ -1,0 +1,70 @@
+.rc-tag-input {
+  width: 400px;
+  height: auto;
+  min-height: 35px;
+  display: inline-block;
+  background: #fff;
+  border: solid 1px #eee;
+}
+.rc-tag-input .tag {
+  position: relative;
+  float: left;
+  display: inline-block;
+  padding: 4px 6px 4px 8px;
+  background: #eaeaea;
+  margin: 4px;
+  border-radius: 3px;
+}
+.rc-tag-input .tag .name {
+  text-decoration: none;
+  color: black;
+  float: left;
+  font-size: 1em;
+  padding: 2px;
+}
+.rc-tag-input .tag .btn-close {
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 0.8em;
+  height: 0.8em;
+  margin-top: 0.28em;
+  margin-left: 10px;
+}
+.rc-tag-input .tag .btn-close::before {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 50%;
+  content: '';
+  min-width: 1px;
+  width: 0.08em;
+  height: 100%;
+  background-color: black;
+  transform: rotate(225deg);
+}
+.rc-tag-input .tag .btn-close::after {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 50%;
+  content: '';
+  min-width: 1px;
+  width: 0.08em;
+  height: 100%;
+  background-color: black;
+  transform: rotate(135deg);
+}
+.rc-tag-input .input-area {
+  display: inline-block;
+  float: left;
+  padding: 7px 4px;
+}
+.rc-tag-input .input-area input {
+  height: 100%;
+  border: none;
+  font-size: 1em;
+}
+.rc-tag-input .input-area input:focus {
+  outline: none;
+}

@@ -1,10 +1,10 @@
 {
   "name": "rc-inputs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Special inputs for React JS",
   "main": "lib/index.js",
   "scripts": {
-    "compile": "babel src --out-file lib/index.js"
+    "compile": "babel src --out-dir lib"
   },
   "repository": {
     "type": "git",

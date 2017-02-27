@@ -1,68 +1,92 @@
-.select {
-    min-width: 100px;
-    position: relative;
+.rc-select {
+  min-width: 100px;
+  position: relative;
+  display: inline-block;
+  transition: all 1s;
+  border-radius: 3px;
+  border: 1px solid #eee;
+  min-width: 140px;
+  &:focus {
+    outline: none;
+  }
+  .current {
+    font-size: 11px;
+    padding: 5px 10px;
     display: inline-block;
-    //padding: 5px;
-    transition: all 1s;
-    border-radius: 3px;
-    border: 1px solid #eee;
-    min-width: 140px;
+    width: 100%;
+    position: relative;
+    &:hover {
+      cursor: pointer;
+    }
     &:focus {
       outline: none;
     }
-
-    .current {
-      font-size: 11px;
-      padding: 5px 10px;
-      display: inline-block;
-      width: 100%;
+    &.arrow {
       position: relative;
-      &:focus {
-        outline: none;
+      padding-right: 10px;
+      &::before {
+        position: absolute;
+        content: "";
+        top: 45%;
+        right: 6px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #eee;
       }
       &::after {
         position: absolute;
-        display: inline-block;
         content: "";
-        top: 8px;
-        right: 9px;
-        width: 9px;
-        height: 4px;
-        background: url("../img/icon-dropdown.png") no-repeat;
-        background-size: cover;
-        z-index: 10;
+        top: calc(45% - 2px);
+        right: 6px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #fff;
       }
-      //padding-right: 10px;
     }
-    .list {
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 1s;
-      position: absolute;
-      z-index: 100;
-      left: 0px;
-      width: 115%;
-      box-shadow: 0 0 20px rgba(0, 0, 0, .15);
-      // padding: 5px;
-      &.open {
-        visibility: visible;
-        opacity: 1;
-        transition: opacity 1s;
+    &.arrow.open {
+      &::before {
+        top: 45%;
+        border-top: 0px;
+        border-bottom: 5px solid #eee;
       }
-
-      ul {
-        border: 1px solid #eee;
-        background-color: #f6f6f6;
-        overflow: hidden;
-        border-radius: 3px;
-        background: #fff;
-        li {
-         padding: 6px 10px;
-         font-size: 12px;
-         &:focus {
-           outline: none;
-         }
-        }
+      &::after {
+        top: calc(45% + 2px);
+        border-top: 0px;
+        border-bottom: 5px solid #fff;
       }
     }
   }
+  .list {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s, visibility .5s;
+    position: absolute;
+    z-index: 100;
+    left: 0px;
+    width: 115%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background: #fff;
+    &.open {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 1s, visibility 1s;
+    }
+
+    li {
+      padding: 6px 10px;
+      font-size: 12px;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import "../styles/select.scss";
 
 function getRandomInt() {
   return Math.floor(Math.random() * (1000000000000 - 1 + 1)) + 1;
@@ -55,7 +54,7 @@ export default class Select extends React.Component{
   render() {
 
     return (
-      <div className={classNames("react-inputs-select", this.props.className)}>
+      <div className={classNames("rc-select", this.props.className)}>
         <div className={classNames("current", this.state.selected.className, {
           "arrow": !this.props.customeArrow,
           "open": this.state.isOpen

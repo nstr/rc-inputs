@@ -1,6 +1,6 @@
-import Select from "./select.jsx";
-import EmailInput from "./email-input.jsx";
-import PasswordInput from "./password-input.jsx";
-import TagInput from "./tag-input.jsx";
+import Select from "./select";
+import EmailInput from "./email-input";
+import PasswordInput from "./password-input";
+import TagInput from "./tag-input";
 
 export { Select, EmailInput, PasswordInput, TagInput };

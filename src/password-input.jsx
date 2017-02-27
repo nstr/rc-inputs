@@ -1,6 +1,6 @@
 import React from "react";
 
-import TextInput from "./text-input.jsx";
+import TextInput from "./text-input";
 
 export class PasswordInput extends TextInput{
   constructor(props) {

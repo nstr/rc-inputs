@@ -1,0 +1,89 @@
+.rc-select {
+  min-width: 100px;
+  position: relative;
+  display: inline-block;
+  transition: all 1s;
+  border-radius: 3px;
+  border: 1px solid #eee;
+  min-width: 140px;
+}
+.rc-select:focus {
+  outline: none;
+}
+.rc-select .current {
+  font-size: 11px;
+  padding: 5px 10px;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+}
+.rc-select .current:hover {
+  cursor: pointer;
+}
+.rc-select .current:focus {
+  outline: none;
+}
+.rc-select .current.arrow {
+  position: relative;
+  padding-right: 10px;
+}
+.rc-select .current.arrow::before {
+  position: absolute;
+  content: "";
+  top: 45%;
+  right: 6px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #eee;
+}
+.rc-select .current.arrow::after {
+  position: absolute;
+  content: "";
+  top: calc(45% - 2px);
+  right: 6px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+}
+.rc-select .current.arrow.open::before {
+  top: 45%;
+  border-top: 0px;
+  border-bottom: 5px solid #eee;
+}
+.rc-select .current.arrow.open::after {
+  top: calc(45% + 2px);
+  border-top: 0px;
+  border-bottom: 5px solid #fff;
+}
+.rc-select .list {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s, visibility .5s;
+  position: absolute;
+  z-index: 100;
+  left: 0px;
+  width: 115%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #eee;
+  border-radius: 3px;
+  background: #fff;
+}
+.rc-select .list.open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s, visibility 1s;
+}
+.rc-select .list li {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.rc-select .list li:focus {
+  outline: none;
+}
+.rc-select .list li:hover {
+  cursor: pointer;
+}
