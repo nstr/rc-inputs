@@ -57,7 +57,6 @@ export default class Select extends React.Component{
     if (this.props.onChange) this.props.onChange(option);
   }
   render() {
-
     return (
       <div className={classNames("rc-select", this.props.className)}>
         <div className={classNames("current", this.state.selected.className ? this.state.selected.className : null, {
@@ -86,7 +85,7 @@ export default class Select extends React.Component{
           {
             this.props.options.map((option, index) => {
               return (
-                <li key={`select-${this.state.id}-option-${index}`}
+                <li key={`${this.state.id}-option-${index}`}
                   style={option.style}
                   className={option.className}
                   style={option.style}
@@ -101,3 +100,7 @@ export default class Select extends React.Component{
     );
   }
 }
+
+Select.propTypes = {
+  options: React.PropTypes.array
+};
