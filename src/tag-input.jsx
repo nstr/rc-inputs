@@ -27,7 +27,7 @@ export default class TagInput extends React.Component{
         tagName: "",
         tags: this.state.tags.concat([{name: this.state.tagName}])
       });
-      if (this.props.addTag) this.props.addTag({name: this.state.tagName});
+      if (this.props.onChange) this.props.onChange({name: this.state.tagName});
     }
   }
   onDelete(actionIndex, tag) {
