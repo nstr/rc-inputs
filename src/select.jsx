@@ -10,7 +10,7 @@ export default class Select extends React.Component{
     super(props);
     this.state = {
       id: `select-${getRandomInt()}`,
-      selected: (!!this.props.selected) ? this.props.selected : this.props.placeholder ? this.props.placeholder : this.props.options[0],
+      selected: (!!this.props.selected) ? this.props.selected : this.props.placeholder ? this.props.placeholder : this.props.options[0] ? this.props.options[0] : {},
       isOpen: false
     };
     this.selectOption = this.selectOption.bind(this);
@@ -27,6 +27,11 @@ export default class Select extends React.Component{
     if (nextProps["selected"]) {
       this.setState({
         selected: nextProps["selected"]
+      });
+    }
+    if (nextProps["options"]) {
+      this.setState({
+        options: nextProps["options"]
       });
     }
   }
@@ -55,7 +60,7 @@ export default class Select extends React.Component{
 
     return (
       <div className={classNames("rc-select", this.props.className)}>
-        <div className={classNames("current", this.state.selected.className, {
+        <div className={classNames("current", this.state.selected.className ? this.state.selected.className : null, {
           "arrow": !this.props.customeArrow,
           "open": this.state.isOpen
         })} onClick={this.toggleList} style={this.state.selected.style}>
