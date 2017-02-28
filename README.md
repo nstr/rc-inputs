@@ -9,7 +9,7 @@
 ## Installation
 
 ```
-npm i react-tab-list --save
+npm i rc-inputs --save
 ```
 
 ## EmailInput
