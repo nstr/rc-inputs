@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 export default class TagInput extends React.Component{
   constructor(props) {
@@ -27,7 +28,8 @@ export default class TagInput extends React.Component{
         tagName: "",
         tags: this.state.tags.concat([{name: this.state.tagName}])
       });
-      if (this.props.onChange) this.props.onChange({name: this.state.tagName});
+      if (this.props.onAdd) this.props.onAdd({name: this.state.tagName});
+      if (this.props.onChange) this.props.onChange(this.state.tags);
     }
   }
   onDelete(actionIndex, tag) {
@@ -40,6 +42,7 @@ export default class TagInput extends React.Component{
       tags
     });
     if (this.props.onDelete) this.props.onDelete(actionIndex, tag, tags);
+    if (this.props.onChange) this.props.onChange(this.state.tags);
   }
   render() {
 
@@ -53,9 +56,9 @@ export default class TagInput extends React.Component{
               props["target"] = "_blank";
             }
             return(
-              <li key={`tag-${index}`} className={`tag ${tag.className}`}>
+              <li key={`tag-${index}`} className={classNames("tag", tag.className)} style={tag.style}>
                 <a className="name" {...props}>
-                  {tag.name}
+                  {tag.name ? tag.name : tag}
                 </a>
                 <a onClick={this.onDelete.bind(this, index, tag)} className="btn-close" />
               </li>
@@ -67,7 +70,10 @@ export default class TagInput extends React.Component{
             if (!this.props.disableInput) {
               return (
                 <li className="input-area">
-                  <input type="text" onChange={this.handelTag} onKeyUp={this.addTag} value={this.state.tagName}/>
+                  <input type="text"
+                    placeholder={this.props.placeholder}
+                    onChange={this.handelTag}
+                    onKeyUp={this.addTag} value={this.state.tagName}/>
                 </li>
               );
             }
