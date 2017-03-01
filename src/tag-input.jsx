@@ -24,12 +24,13 @@ export default class TagInput extends React.Component{
   }
   addTag(e) {
     if(e.keyCode === 13) {
+      const tags = this.state.tags.concat([{name: this.state.tagName}]);
       this.setState({
         tagName: "",
-        tags: this.state.tags.concat([{name: this.state.tagName}])
+        tags
       });
       if (this.props.onAdd) this.props.onAdd({name: this.state.tagName});
-      if (this.props.onChange) this.props.onChange(this.state.tags);
+      if (this.props.onChange) this.props.onChange(tags);
     }
   }
   onDelete(actionIndex, tag) {
@@ -42,7 +43,7 @@ export default class TagInput extends React.Component{
       tags
     });
     if (this.props.onDelete) this.props.onDelete(actionIndex, tag, tags);
-    if (this.props.onChange) this.props.onChange(this.state.tags);
+    if (this.props.onChange) this.props.onChange(tags);
   }
   render() {
 

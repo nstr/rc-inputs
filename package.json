@@ -1,6 +1,6 @@
 {
   "name": "rc-inputs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Special inputs for React JS",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/njnest/react-inputs.git"
+    "url": "git+https://github.com/njnest/rc-inputs.git"
   },
   "keywords": [
     "react",
@@ -34,7 +34,7 @@
   "author": "Nick Nesterov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/njnest/react-inputs/issues"
+    "url": "https://github.com/njnest/rc-inputs/issues"
   },
-  "homepage": "https://github.com/njnest/react-inputs#readme"
+  "homepage": "https://github.com/njnest/rc-inputs#readme"
 }
