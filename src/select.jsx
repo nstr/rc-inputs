@@ -10,7 +10,7 @@ export default class Select extends React.Component{
     super(props);
     this.state = {
       id: `select-${getRandomInt()}`,
-      selected: (!!this.props.selected) ? this.props.selected : this.props.placeholder ? this.props.placeholder : this.props.options[0] ? this.props.options[0] : {},
+      selected: (!!this.props.selected) ? this.props.selected : this.props.placeholder ? this.props.placeholder : null,
       isOpen: false
     };
     this.selectOption = this.selectOption.bind(this);
@@ -36,7 +36,7 @@ export default class Select extends React.Component{
     }
   }
   handleClick(e) {
-    if ((e.target.closest(`#${this.state.id}`) === null) && (this.state.isOpen === true)) {
+    if (!e.target.closest(`#current-${this.state.id}`) && (e.target.closest(`#list-${this.state.id}`) === null) && (this.state.isOpen === true)) {
       this.hideThis();
     }
   }
@@ -59,10 +59,11 @@ export default class Select extends React.Component{
   render() {
     return (
       <div className={classNames("rc-select", this.props.className)}>
-        <div className={classNames("current", this.state.selected.className ? this.state.selected.className : null, {
+        <div className={classNames("current", this.state.selected ? this.state.selected.className : null, {
           "arrow": !this.props.customeArrow,
           "open": this.state.isOpen
-        })} onClick={this.toggleList} style={this.state.selected.style}>
+        })} onClick={this.toggleList} id={`current-${this.state.id}`}
+          style={this.state.selected ? this.state.selected.style : null}>
           {
             (() => {
               if (this.state.selected && this.state.selected.option) {
@@ -81,9 +82,9 @@ export default class Select extends React.Component{
             })()
           }
         </div>
-        <ul className={this.state.isOpen ? "list open" : "list"} id={this.state.id}>
+        <ul className={this.state.isOpen ? "list open" : "list"} id={`list-${this.state.id}`}>
           {
-            this.props.options.map((option, index) => {
+            this.props.options.length > 0 ? this.props.options.map((option, index) => {
               return (
                 <li key={`${this.state.id}-option-${index}`}
                   style={option.style}
@@ -93,7 +94,13 @@ export default class Select extends React.Component{
                   {option.option ? option.option : option}
                 </li>
               );
-            })
+            }) : this.props.listPlaceholder ? (
+              <li style={this.props.listPlaceholder.style}
+                className={this.props.listPlaceholder.className}
+                style={this.props.listPlaceholder.style}>
+                {this.props.listPlaceholder.option ? this.props.listPlaceholder.option : this.props.listPlaceholder}
+              </li>
+            ) : null
           }
         </ul>
       </div>
@@ -102,5 +109,8 @@ export default class Select extends React.Component{
 }
 
 Select.propTypes = {
-  options: React.PropTypes.array
+  options: React.PropTypes.array,
+  selected: React.PropTypes.any,
+  placeholder: React.PropTypes.any,
+  listPlaceholder: React.PropTypes.any
 };
