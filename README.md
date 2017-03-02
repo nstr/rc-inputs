@@ -105,6 +105,7 @@ import "rc-inputs/styles/select.css" // or select.less or select.scss
     {option: "item 4", className: "test-4", style: {backgroundColor: "blue"}}
   ]}
   placeholder={"placeholder"}
+  listPlaceholder={"the list is empty"}
   onChange={(e) => console.log("e", e)}
   selected={{option: "item 2"}}
   customeArrow={<i className="my-arrow" />}
@@ -115,4 +116,5 @@ Property | Type | Description
 :---|:---|:---
 `className` | string | CSS classes of the Select.
 `options` | array of string, or array of objects | In the case of using Objects, the tag requires a field `option` and in this case possible use to className and style. It is possible to to put the component in the field `option`. Example of the `option` like an Object `{option: <i className="some-class" />}` or `{option: "item 1", className: "some-class", style: {backgroundColor: "red"}}`.
+`listPlaceholder` | string or Object | This item will be shown if the list will be empty.
 `onChange` | function | The function returns selected option.
