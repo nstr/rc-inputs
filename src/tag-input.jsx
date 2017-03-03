@@ -80,15 +80,18 @@ export default class TagInput extends React.Component{
             }
           })()
         }
+        {
+          this.props.children
+        }
       </ul>
     );
   }
 }
 
 TagInput.propTypes = {
+  tags: React.PropTypes.array,
   disableInput: React.PropTypes.bool,
-  createTagOnPress: React.PropTypes.array,
-  tagRules: React.PropTypes.string
+  createTagOnPress: React.PropTypes.array
 };
 
 TagInput.defaultProps = {

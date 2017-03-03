@@ -3,32 +3,27 @@ import React from "react";
 export default class TextInput extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-      value: this.props.defaultValue ? this.props.defaultValue : ""
-    };
     this.handleData = this.handleData.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+  onChange(e) {
+    if (this.props.onChange) this.props.onChange(e);
+    if (this.onValid) this.onValid(e);
   }
   handleData(e) {
     if (this.props.onEnter) {
       switch (e.keyCode) {
       case 13:
-        this.props.onEnter(this.state.value);
+        this.props.onEnter(e.target.value);
         break;
       }
     }
-    if (this.props.onChange) this.props.onChange(e);
-    if (this.onValid) {
-      this.onValid(e);
-    }
-    this.setState({
-      value: e.target.value
-    });
   }
   componentDidMount() {
     if (this.props.autofill && !this.props.defaultValue) {
       if (this.refs.input.value !== "") this.handleData({target: this.refs.input});
       this._listener = setInterval(function () {
-        if (this.state.value !== this.refs.input.value) this.handleData({target: this.refs.input});
+        if (this.props.value !== this.refs.input.value) this.handleData({target: this.refs.input});
       }.bind(this), 500);
     }
   }
@@ -40,9 +35,10 @@ export default class TextInput extends React.Component{
   render() {
       return <input type={this.props.type ? this.props.type : "text"}
         ref="input"
-        defaultValue={this.props.defaultValue}
+        value={this.props.value}
         className={this.props.className}
         placeholder={this.props.placeholder}
+        onChange={this.onChange}
         onKeyUp={this.handleData}
         autoComplete={this.props.autoComplete}/>;
   }

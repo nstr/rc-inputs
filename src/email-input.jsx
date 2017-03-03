@@ -7,7 +7,7 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-export class EmailInput extends TextInput{
+export default class EmailInput extends TextInput{
   constructor(props) {
     super(props);
   }
