@@ -85,10 +85,15 @@ export default class Select extends React.Component{
         <ul className={this.state.isOpen ? "list open" : "list"} id={`list-${this.state.id}`}>
           {
             this.props.options.length > 0 ? this.props.options.map((option, index) => {
+              let classNames = [];
+              if (option.className) classNames.push(option.className);
+              if (JSON.stringify(option) === JSON.stringify(this.state.selected) && !!this.props.activeClass) {
+                classNames.push(this.props.activeClass);
+              }
               return (
                 <li key={`${this.state.id}-option-${index}`}
                   style={option.style}
-                  className={option.className}
+                  className={classNames.join(" ")}
                   style={option.style}
                   onClick={this.selectOption.bind(this, option)}>
                   {option.option ? option.option : option}
