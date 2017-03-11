@@ -165,4 +165,39 @@ Property | Type | Description
 `activeClass` | string | CSS class for the active option
 `options` | array of string, or array of objects | In the case of using Objects, the tag requires a field `option` and in this case possible use to className and style. It is possible to to put the component in the field `option`. Example of the `option` like an Object `{option: <i className="some-class" />}` or `{option: "item 1", className: "some-class", style: {backgroundColor: "red"}}`.
 `listPlaceholder` | string or Object | This item will be shown if the list will be empty.
-`onChange` | function | The function returns selected option.
+`onChange` | function | The function returns selected option and index of this option.
+`activeIndex` | Int | If you are using jsx like a option `{option: <i className="some-class" />}`, you have to use `activeIndex`. Example bellow.
+
+```jsx
+class App extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeIndex: 0,
+      option: <span>test 1</span>
+    };
+    this.handleSelect = this.handleSelect.bind(this);
+  }
+  handleSelect(option, index) {
+    this.setState({
+      activeIndex: index,
+      option: option
+    });
+  }
+  render() {
+    return (
+     <Select
+       onChange={this.handleSelect}
+       activeClass={"active"}
+       activeIndex={this.state.activeIndex}
+       selected={this.state.option}
+       options={[
+        {option: <span>item 1</span>, className: "some-class"},
+        {option: <span>item 2</span>, className: "some-class"},
+        {option: <span>item 3</span>, className: "some-class"},
+        {option: <span>item 4</span>, className: "some-class"}
+      ]}/>
+    );
+  }
+}
+```
