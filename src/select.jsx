@@ -49,12 +49,12 @@ export default class Select extends React.Component{
       isOpen: !this.state.isOpen
     });
   }
-  selectOption(option) {
+  selectOption(option, index) {
     this.setState({
       selected: option,
       isOpen: false
     });
-    if (this.props.onChange) this.props.onChange(option);
+    if (this.props.onChange) this.props.onChange(option, index);
   }
   render() {
     return (
@@ -87,15 +87,17 @@ export default class Select extends React.Component{
             this.props.options.length > 0 ? this.props.options.map((option, index) => {
               let classNames = [];
               if (option.className) classNames.push(option.className);
-              if (JSON.stringify(option) === JSON.stringify(this.state.selected) && !!this.props.activeClass) {
-                classNames.push(this.props.activeClass);
+              try {
+                if (!!this.props.activeClass && JSON.stringify(option) === JSON.stringify(this.state.selected)) classNames.push(this.props.activeClass);
+              } catch (_) {
+                if (index === this.props.activeIndex) classNames.push(this.props.activeClass);
               }
               return (
                 <li key={`${this.state.id}-option-${index}`}
                   style={option.style}
                   className={classNames.join(" ")}
                   style={option.style}
-                  onClick={this.selectOption.bind(this, option)}>
+                  onClick={this.selectOption.bind(this, option, index)}>
                   {option.option ? option.option : option}
                 </li>
               );
