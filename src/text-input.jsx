@@ -18,6 +18,12 @@ export default class TextInput extends React.Component{
         break;
       }
     }
+
+    if (this.props.onKeyClick && this.props.clickableKeys) {
+      this.props.clickableKeys.forEach(key => {
+        if (key === e.keyCode) this.props.onKeyClick(e.target.value);
+      });
+    }
   }
   componentDidMount() {
     if (this.props.autofill && !this.props.defaultValue) {
