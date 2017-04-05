@@ -39,6 +39,8 @@ Property | Type | Description
 `onEnter` | function | Handling enter button
 `autofill` | bool | Turn off, turn on autofill. You can fetch "remembers" of a browser.
 `autoComplete` | string | Default autoComplete of the input.
+`clickableKeys` | array of int | This is keyCodes of keyboard events
+`onKeyClick` | function | Onclicks handler of `clickableKeys`
 
 ## PasswordInput
 
@@ -69,6 +71,8 @@ Property | Type | Description
 `onEnter` | function | Handling enter button
 `autofill` | bool | Turn off, turn on autofill. You can fetch "remembers" of a browser.
 `autoComplete` | string | Default autoComplete of the input. 
+`clickableKeys` | array of int | This is keyCodes of keyboard events
+`onKeyClick` | function | Onclicks handler of `clickableKeys`
 
 
 ## TagInput
