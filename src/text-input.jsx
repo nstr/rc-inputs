@@ -32,6 +32,9 @@ export default class TextInput extends React.Component{
         if (this.props.value !== this.refs.input.value) this.handleData({target: this.refs.input});
       }.bind(this), 500);
     }
+
+    if (this.props.onFocus) this.refs.input.addEventListener("focus", this.props.onFocus);
+    if (this.props.onBlur) this.refs.input.addEventListener("blur", this.props.onBlur);
   }
   componentWillUnmount() {
     if (this.props.autofill && !this.props.defaultValue) {
