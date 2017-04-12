@@ -98,7 +98,7 @@ Property | Type | Description
 `onDelete` | function | The first argument of the function returns tag's index of deleted tag in the tags array. The second argument returns deleted tag. The third argument returns the tags.
 `onChange` | function | The function returns the array of current tags.
 `disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
-`dynamicInputWidth` | bool | The prop makes any internal input(custom or default) stretched on all remaining width. The default is false.
+`dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
 
 Also exist posobility include some elements into TagInput. In this way, the elements will be added after all elements of TagInput. Usage example: Add EmailInput Component with handling valid emails.
 
