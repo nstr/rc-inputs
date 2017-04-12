@@ -48,7 +48,7 @@ export default class TagInput extends React.Component{
   render() {
 
     return(
-      <ul className="rc-tag-input">
+      <ul className={classNames("rc-tag-input", this.props.className)}>
         {
           this.state.tags.map((tag, index) => {
             let props = {};
