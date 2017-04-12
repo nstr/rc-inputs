@@ -12,6 +12,13 @@ export default class TagInput extends React.Component{
     this.onDelete = this.onDelete.bind(this);
     this.handelTag = this.handelTag.bind(this);
   }
+  componentDidMount() {
+    if (this.props.dynamicInputWidth) {
+      this.refs.tagInput.style.display = "flex";
+      this.refs.tagInput.style.flexWrap = "wrap";
+      this.refs.tagInput.lastChild.style.flex = "1 1";
+    }
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps["tags"]) {
       this.setState({
@@ -48,7 +55,7 @@ export default class TagInput extends React.Component{
   render() {
 
     return(
-      <ul className={classNames("rc-tag-input", this.props.className)}>
+      <ul className={classNames("rc-tag-input", this.props.className)} ref="tagInput">
         {
           this.state.tags.map((tag, index) => {
             let props = {};
