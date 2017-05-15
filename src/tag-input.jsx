@@ -31,7 +31,7 @@ export default class TagInput extends React.Component{
   }
   addTag(e) {
     if(e.keyCode === 13) {
-      const tags = this.state.tags.concat([{name: this.state.tagName}]);
+      const tags = this.state.tagName.length > 0 ? this.state.tags.concat([{name: this.state.tagName}]) : this.state.tags;
       this.setState({
         tagName: "",
         tags
