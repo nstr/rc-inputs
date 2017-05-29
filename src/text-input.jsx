@@ -42,34 +42,13 @@ export default class TextInput extends React.Component{
     }
   }
   render() {
-    const inputAutoComplete = typeof this.props.autoComplete !== "boolean" ? false : this.props.autoComplete;
-      const input = <input type={this.props.type ? this.props.type : "text"}
+      return <input type={this.props.type ? this.props.type : "text"}
         ref="input"
         value={this.props.value}
         className={this.props.className}
         placeholder={this.props.placeholder}
         onChange={this.onChange}
         onKeyUp={this.handleData}
-        autoComplete={inputAutoComplete}/>;
-
-      if (typeof this.props.autoComplete !== "boolean") {
-        return (
-          <div>
-            {input}
-            <ul className="">
-              {
-                this.props.autoComplete.map((item, index) => (
-                  <li key={index}>
-                    {item}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        );
-      }
-      else {
-        return input;
-      }
+        autoComplete={this.props.autoComplete}/>;
   }
 }

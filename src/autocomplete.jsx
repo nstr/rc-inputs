@@ -7,7 +7,6 @@ export default class Autocomplete extends React.Component {
     this.onSelect = this.onSelect.bind(this);
   }
   onSelect(item) {
-    console.log("item", item);
     if (this.props.onSelect) this.props.onSelect(item);
   }
   render() {

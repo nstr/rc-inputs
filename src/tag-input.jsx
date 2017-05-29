@@ -82,7 +82,6 @@ export default class TagInput extends React.Component{
   }
   onSelect(item) {
     const tags = this.state.tags.concat([item]);
-    console.log("tags", tags);
     this.setState({
       tagName: "",
       tags
