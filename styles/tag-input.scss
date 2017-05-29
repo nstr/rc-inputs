@@ -1,4 +1,4 @@
-.rc-tag-input {
+.rc-tag-input, .rc-autocomplete {
   width: auto;
   height: auto;
   min-height: 35px;
@@ -71,6 +71,34 @@
       font-size: 1em;
       &:focus {
         outline: none;
+      }
+    }
+  }
+}
+
+
+.rc-input-wrap {
+  display: inline-block;
+  position: relative;
+  .rc-autocomplete {
+    top: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    .rc-label-autocomplete {
+      display: inline-block;
+      float: left;
+      padding: 10px;
+      line-height: inherit;
+    }
+    &.list {
+      display: inline-block;
+      width: auto;
+      li {
+        width: calc(100% - 6px);
+        a {
+          margin: 4px;
+        }
       }
     }
   }

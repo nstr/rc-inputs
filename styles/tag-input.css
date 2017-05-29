@@ -68,3 +68,30 @@
 .rc-tag-input .input-area input:focus {
   outline: none;
 }
+
+.rc-input-wrap {
+  display: inline-block;
+  position: relative;
+}
+.rc-input-wrap .rc-autocomplete {
+    top: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+.rc-input-wrap .rc-autocomplete  .rc-label-autocomplete {
+  display: inline-block;
+  float: left;
+  padding: 10px;
+  line-height: inherit;
+}
+.rc-input-wrap .rc-autocomplete.list {
+  display: inline-block;
+  width: auto;
+}
+.rc-input-wrap .rc-autocomplete.list li {
+  width: calc(100% - 6px);
+}
+.rc-input-wrap .rc-autocomplete.list li a {
+  margin: 4px;
+}
