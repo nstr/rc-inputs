@@ -166,6 +166,7 @@ Property | Type | Description
 `dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
 `autocomplete` | object | Special data for autocomplete. See schema below. 
 `inputValue` | string | Value setter. Use only with `autocomplete` and included input. This prop required if you want to use `autocomplete`.
+`onSelect` | function | The function returns selected tag from `autocomplete` and all used `tags`
 
 Autocomplete Schema
 
