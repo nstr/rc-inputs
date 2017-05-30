@@ -15,6 +15,7 @@ export default class TagInput extends React.Component{
     this.handelTag = this.handelTag.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.onDelete = this.onDelete.bind(this);
+
   }
   componentDidMount() {
     if (this.props.dynamicInputWidth) {
@@ -24,10 +25,13 @@ export default class TagInput extends React.Component{
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps["tags"]) {
+    if (!!nextProps["tags"]) {
       this.setState({
         tags: nextProps.tags
       });
+    }
+    if (!!nextProps["inputValue"]) {
+      this.handelTag({target: {value: nextProps.inputValue}});
     }
   }
   handelTag(e) {
