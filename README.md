@@ -75,74 +75,6 @@ Property | Type | Description
 `onKeyClick` | function | Onclicks handler of `clickableKeys`
 
 
-## TagInput
-
-```jsx
-import { TagInput } from "rc-inputs";
-import "rc-inputs/styles/tag-input.css" // or tag-input.less or tag-input.scss
-
-<TagInput 
-  tags={[{name: "some name", href: "https://www.some...", className: "some-tag-class", style: {color: "#fff"}}]}
-  onAdd={(tag) => console.log(tag)}
-  onDelete={(tagIndex, tag, tags) => console.log(tagIndex, tag, tags)}
-  onChange={(tags) => console.log(tags)}
-  disableInput={false}
-/>
-```
-
-Property | Type | Description
-:---|:---|:---
-`className` | string | CSS classes of the element.
-`tags` | array of string, or array of objects | In the case of using Objects, the tag requires a name and in this case possible use to className and style. Example of the tag like an Object `{name: "tag name", className: "some-class", style: {color: "#fff"}}`.
-`onAdd` | function | The function returns new tag created by a user.
-`onDelete` | function | The first argument of the function returns tag's index of deleted tag in the tags array. The second argument returns deleted tag. The third argument returns the tags.
-`onChange` | function | The function returns the array of current tags.
-`disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
-`dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
-
-Also exist posobility include some elements into TagInput. In this way, the elements will be added after all elements of TagInput. Usage example: Add EmailInput Component with handling valid emails.
-
-```jsx
-class SomeComponent extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      emails: [],
-      isValid: false,
-      inputValue: ""
-    };
-    this.addTag = this.addTag.bind(this);
-    this.handleValidity = this.handleValidity.bind(this);
-  }
-  addTag(value) {
-    if (this.state.isValid) {
-      const emails = this.state.emails.concat([value]);
-      this.setState({
-        emails: emails,
-        inputValue: ""
-      });
-    }
-  }
-  handleValidity(isValid, e) {
-    this.setState({
-      isValid: isValid,
-      inputValue: e.target.value
-    });
-  }
-  render() {
-    return (
-      <TagInput disableInput={true}
-        tags={this.state.emails}>
-        <EmailInput value={this.state.inputValue} 
-          onEnter={this.addTag}
-          onValid={this.handleValidity} />
-       </TagInput>
-      );
-   }
-}
-```
-
-
 ## Select
 
 ```jsx
@@ -205,5 +137,95 @@ class App extends React.Component{
       ]}/>
     );
   }
+}
+```
+
+## TagInput
+
+```jsx
+import { TagInput } from "rc-inputs";
+import "rc-inputs/styles/tag-input.css" // or tag-input.less or tag-input.scss
+
+<TagInput 
+  tags={[{name: "some name", href: "https://www.some...", className: "some-tag-class", style: {color: "#fff"}}]}
+  onAdd={(tag) => console.log(tag)}
+  onDelete={(tagIndex, tag, tags) => console.log(tagIndex, tag, tags)}
+  onChange={(tags) => console.log(tags)}
+  disableInput={false}
+/>
+```
+
+Property | Type | Description
+:---|:---|:---
+`className` | string | CSS classes of the element.
+`tags` | array of string, or array of objects | In the case of using Objects, the tag requires a name and in this case possible use to className and style. Example of the tag like an Object `{name: "tag name", className: "some-class", style: {color: "#fff"}}`.
+`onAdd` | function | The function returns new tag created by a user.
+`onDelete` | function | The first argument of the function returns tag's index of deleted tag in the tags array. The second argument returns deleted tag. The third argument returns the tags.
+`onChange` | function | The function returns the array of current tags.
+`disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
+`dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
+`autocomplete` | object | Special data for autocomplete. See schema below. 
+`inputValue` | string | Value setter. Use only with `autocomplete` and included input. This prop required if you want to use `autocomplete`.
+
+Autocomplete Schema
+
+Property | Type | Description
+:---|:---|:---
+`items` | array | Displayed items of autocomplete
+`searchKey` | string | If you are using objects in `items` you will have to select key of an object on which will be searched.
+`searchPath` | string | Completely the same as `searchKey` but works for the deep key. Use dots for going deeper. For exemple key for object `{test: {abc: 123}}` will be `test.abc`. Attention! It doesn't work with `searchKey`.
+`label` | string | text in the begin of the autocomplete list.
+
+Also exist posobility include some elements into TagInput. In this way, the elements will be added after all elements of TagInput. If you are using autocomplete, don't forget `inputValue`. Usage example: Add EmailInput Component with handling valid emails.
+
+```jsx
+class SomeComponent extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      emails: [],
+      isValid: false,
+      inputValue: ""
+    };
+    this.addTag = this.addTag.bind(this);
+    this.handleValidity = this.handleValidity.bind(this);
+  }
+  addTag(value) {
+    if (this.state.isValid) {
+      const emails = this.state.emails.concat([value]);
+      this.setState({
+        emails: emails,
+        inputValue: ""
+      });
+    }
+  }
+  handleValidity(isValid, e) {
+    this.setState({
+      isValid: isValid,
+      inputValue: e.target.value
+    });
+  }
+  render() {
+    return (
+      <TagInput disableInput={true}
+        inputValue={this.state.inputValue}
+        autocomplete={{
+          items: [{test: {tag: "test"}, name: "test"},
+          {test: {tag: "test-1"}, name: "test-1"},
+          {test: {tag: "test-2"}, name: "test-2"},
+          {test: {tag: "test-3"}, name: "test-3"},
+          {test: {tag: "test-4"}, name: "test-4"}],
+          path: "test.tag",
+          className: "list",
+          label: "this is label:"
+        }}
+        autocomplete
+        tags={this.state.emails}>
+        <EmailInput value={this.state.inputValue} 
+          onEnter={this.addTag}
+          onValid={this.handleValidity} />
+       </TagInput>
+      );
+   }
 }
 ```
