@@ -86,6 +86,9 @@ export default class TagInput extends React.Component{
       tagName: "",
       tags
     });
+    if (this.props.onAdd) this.props.onAdd(item);
+    if (this.props.onChange) this.props.onChange(tags);
+    if (this.props.onSelect) this.props.onSelect(item, tags);
   }
   onDelete(actionIndex, tag) {
     let tags = this.state.tags.filter((tag, tagIndex) => {
