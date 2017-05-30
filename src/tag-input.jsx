@@ -15,7 +15,6 @@ export default class TagInput extends React.Component{
     this.handelTag = this.handelTag.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.onDelete = this.onDelete.bind(this);
-
   }
   componentDidMount() {
     if (this.props.dynamicInputWidth) {
@@ -34,20 +33,19 @@ export default class TagInput extends React.Component{
   }
   handelTag(e) {
     this.setState({tagName: e.target.value});
-
     const autocomplete = this.props.autocomplete;
 
     if (!!autocomplete && !!autocomplete.items && autocomplete.items.length > 0 && e.target.value.length > 0) {
       let searchQuery = e.target.value.toLowerCase();
 
       const arr = autocomplete.items.filter((el) => {
-        if (!!autocomplete.key) {
-          if (!el[autocomplete.key]) return false;
-          const key = `${el[autocomplete.key]}`.toLowerCase();
+        if (!!autocomplete.searchKey) {
+          if (!el[autocomplete.searchKey]) return false;
+          const key = `${el[autocomplete.searchKey]}`.toLowerCase();
           return key.indexOf(searchQuery) !== -1;
         }
-        else if (!!autocomplete.path) {
-          return autocomplete.path.split(".").reduce((obj, key, i, arr) => {
+        else if (!!autocomplete.searchPath) {
+          return autocomplete.searchPath.split(".").reduce((obj, key, i, arr) => {
             if (arr.length - 1 === i) {
               const k = `${obj[key]}`.toLowerCase();
               return k.indexOf(searchQuery) !== -1;
