@@ -210,12 +210,12 @@ class SomeComponent extends React.Component{
       <TagInput disableInput={true}
         inputValue={this.state.inputValue}
         autocomplete={{
-          items: [{test: {tag: "test"}, name: "test"},
-          {test: {tag: "test-1"}, name: "test-1"},
-          {test: {tag: "test-2"}, name: "test-2"},
-          {test: {tag: "test-3"}, name: "test-3"},
-          {test: {tag: "test-4"}, name: "test-4"}],
-          path: "test.tag",
+          items: [{userData: {email: "test@test.co"}, name: "jo"},
+          {userData: {email: "tom@gmail.com"}, name: "tom"},
+          {userData: {email: "mark@mark.net"}, name: "mark"},
+          {userData: {email: "al@amazon.com"}, name: "alice"},
+          {userData: {email: "al@al.co"}, name: "alex"}],
+          searchPath: "userData.email",
           className: "list",
           label: "this is label:"
         }}
