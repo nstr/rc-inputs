@@ -30,9 +30,7 @@ export default class TagInput extends React.Component{
         tags: nextProps.tags
       });
     }
-    if (!!nextProps["inputValue"]) {
-      this.handelTag({target: {value: nextProps.inputValue}});
-    }
+    this.handelTag({target: {value: nextProps.inputValue}});
   }
   handelTag(e) {
     this.setState({tagName: e.target.value});
@@ -147,7 +145,7 @@ export default class TagInput extends React.Component{
           !!this.props.autocomplete && this.state.autocomplete.length > 0 ? (
             <Autocomplete
               onSelect={this.onSelect}
-              className={this.props.autocomplete.className}
+              className={classNames("rc-tag-input", this.props.autocomplete.className)}
               autocomplete={this.state.autocomplete}
               label={this.props.autocomplete.label}
             />
@@ -159,6 +157,7 @@ export default class TagInput extends React.Component{
 }
 
 TagInput.propTypes = {
+  inputValue: React.PropTypes.string,
   tags: React.PropTypes.array,
   autocomplete: React.PropTypes.shape({
     label: React.PropTypes.string,
