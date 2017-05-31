@@ -160,7 +160,7 @@ Property | Type | Description
 `className` | string | CSS classes of the element.
 `tags` | array of string, or array of objects | In the case of using Objects, the tag requires a name and in this case possible use to className and style. Example of the tag like an Object `{name: "tag name", className: "some-class", style: {color: "#fff"}}`.
 `onAdd` | function | The function returns new tag created by a user.
-`onDelete` | function | The first argument of the function returns tag's index of deleted tag in the tags array. The second argument returns deleted tag. The third argument returns the tags.
+`onDelete` | function | The first argument of the function  returns deleted tag. The second argument returns tag's index of deleted tag in the tags array. The third argument returns the tags.
 `onChange` | function | The function returns the array of current tags.
 `disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
 `dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
