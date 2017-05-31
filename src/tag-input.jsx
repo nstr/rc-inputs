@@ -59,8 +59,8 @@ export default class TagInput extends React.Component{
           }, el);
         }
         else {
-            const key = `${el}`.toLowerCase();
-            return key.indexOf(searchQuery) !== -1;
+          const key = `${el}`.toLowerCase();
+          return key.indexOf(searchQuery) !== -1;
         }
       });
 
@@ -73,9 +73,10 @@ export default class TagInput extends React.Component{
         autocomplete: []
       });
     }
+    if (this.props.onInputChage) this.props.onInputChage(e);
   }
   addTag(e) {
-    if(e.keyCode === 13) {
+    if(this.props.createTagOnPress.indexOf(e.keyCode) !== -1) {
       const tags = this.state.tagName.length > 0 ? this.state.tags.concat([{name: this.state.tagName}]) : this.state.tags;
       this.setState({
         tagName: "",
@@ -138,6 +139,7 @@ export default class TagInput extends React.Component{
                 return (
                   <li className="input-area">
                     <input type="text"
+                      value={this.props.inputValue}
                       placeholder={this.props.placeholder}
                       onChange={this.handelTag}
                       onKeyUp={this.addTag} value={this.state.tagName}/>
