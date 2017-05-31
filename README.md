@@ -152,6 +152,7 @@ import "rc-inputs/styles/tag-input.css" // or tag-input.less or tag-input.scss
   onDelete={(tagIndex, tag, tags) => console.log(tagIndex, tag, tags)}
   onChange={(tags) => console.log(tags)}
   disableInput={false}
+  createTagOnPress={[13, 32]}
 />
 ```
 
@@ -162,6 +163,7 @@ Property | Type | Description
 `onAdd` | function | The function returns new tag created by a user.
 `onDelete` | function | The first argument of the function  returns deleted tag. The second argument returns tag's index of deleted tag in the tags array. The third argument returns the tags.
 `onChange` | function | The function returns the array of current tags.
+`createTagOnPress` | array | keyCode of pressed buttons on keyboard.
 `disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
 `dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
 `autocomplete` | object | Special data for autocomplete. See schema below. 
