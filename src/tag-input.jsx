@@ -29,6 +29,11 @@ export default class TagInput extends React.Component{
         tags: nextProps.tags
       });
     }
+    if (!!nextProps["autocomplete"]) {
+      this.setState({
+        autocomplete: nextProps["autocomplete"]
+      });
+    }
     this.handelTag({target: {value: nextProps.inputValue}});
   }
   handelTag(e) {
@@ -82,15 +87,18 @@ export default class TagInput extends React.Component{
   }
   onSelect(item) {
     const tags = this.state.tags.concat([item]);
+
     this.setState({
+      autocomplete: this.state.autocomplete.filter((i) => JSON.stringify(i) !== JSON.stringify(item)),
       tagName: "",
       tags
     });
+
     if (this.props.onAdd) this.props.onAdd(item);
     if (this.props.onChange) this.props.onChange(tags);
     if (this.props.onSelect) this.props.onSelect(item, tags);
   }
-  onDelete(actionIndex, tag) {
+  onDelete(tag, actionIndex) {
     let tags = this.state.tags.filter((tag, tagIndex) => {
       if (tagIndex !== actionIndex) {
         return tag;
@@ -99,7 +107,7 @@ export default class TagInput extends React.Component{
     this.setState({
       tags
     });
-    if (this.props.onDelete) this.props.onDelete(actionIndex, tag, tags);
+    if (this.props.onDelete) this.props.onDelete(tag, actionIndex, tags);
     if (this.props.onChange) this.props.onChange(tags);
   }
   render() {
@@ -119,7 +127,7 @@ export default class TagInput extends React.Component{
                   <a className="name" {...props}>
                     {tag.name ? tag.name : tag}
                   </a>
-                  <a onClick={this.onDelete.bind(this, index, tag)} className="btn-close" />
+                  <a onClick={this.onDelete.bind(this, tag, index)} className="btn-close" />
                 </li>
               );
             })
