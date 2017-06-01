@@ -2,12 +2,13 @@ import React from "react";
 import classNames from "classnames";
 
 import Autocomplete from "./autocomplete";
+import TextInput from "./text-input";
 
 export default class TagInput extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      tagName: "",
+      tagName: !!this.props.inputValue ? this.props.inputValue : "",
       autocomplete: [],
       tags: this.props.tags ? this.props.tags : []
     };
@@ -32,6 +33,11 @@ export default class TagInput extends React.Component{
     if (!!nextProps["autocomplete"]) {
       this.setState({
         autocomplete: nextProps["autocomplete"]
+      });
+    }
+    if (!!nextProps["inputValue"]) {
+      this.setState({
+        tagName: nextProps["inputValue"]
       });
     }
     this.handelTag({target: {value: nextProps.inputValue}});
@@ -75,16 +81,14 @@ export default class TagInput extends React.Component{
     }
     if (this.props.onInputChage) this.props.onInputChage(e);
   }
-  addTag(e) {
-    if(this.props.createTagOnPress.indexOf(e.keyCode) !== -1) {
-      const tags = this.state.tagName.length > 0 ? this.state.tags.concat([{name: this.state.tagName}]) : this.state.tags;
-      this.setState({
-        tagName: "",
-        tags
-      });
-      if (this.props.onAdd) this.props.onAdd({name: this.state.tagName});
-      if (this.props.onChange) this.props.onChange(tags);
-    }
+  addTag() {
+    const tags = this.state.tagName.length > 0 ? this.state.tags.concat([{name: this.state.tagName}]) : this.state.tags;
+    this.setState({
+      tagName: "",
+      tags
+    });
+    if (this.props.onAdd) this.props.onAdd({name: this.state.tagName});
+    if (this.props.onChange) this.props.onChange(tags);
   }
   onSelect(item) {
     const tags = this.state.tags.concat([item]);
@@ -138,11 +142,15 @@ export default class TagInput extends React.Component{
               if (!this.props.disableInput) {
                 return (
                   <li className="input-area">
-                    <input type="text"
-                      value={this.props.inputValue}
+                    <TextInput
+                      value={this.state.tagName}
                       placeholder={this.props.placeholder}
                       onChange={this.handelTag}
-                      onKeyUp={this.addTag} value={this.state.tagName}/>
+                      clickableKeys={this.props.createTagOnPress}
+                      onKeyClick={this.addTag}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                    />
                   </li>
                 );
               }
