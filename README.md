@@ -36,7 +36,9 @@ Property | Type | Description
 `value` | string | Value of the input.
 `onChange` | function | The function returns the same as onChange of an average input.
 `onValid` | function | The first argument returns bool (true if the email is valid). The second argument returns the same as onChange of an average input.
-`onEnter` | function | Handling enter button
+`onEnter` | function | Handling enter button.
+`onFocus` | function | The function called after focus event.
+`onBlur` | function | The function called after blur (unfocus) event.
 `autofill` | bool | Turn off, turn on autofill. You can fetch "remembers" of a browser.
 `autoComplete` | string | Default autoComplete of the input.
 `clickableKeys` | array of int | This is keyCodes of keyboard events
@@ -68,7 +70,9 @@ Property | Type | Description
 `onChange` | function | The function returns the same as onChange of an average input.
 `pattern` | string | You can use RegExp for handle input value. 
 `onValid` | function | The first argument of the function returns bool (true if the password is valid according to your pattern). The second argument returns the same as onChange of an average input. Without `pattern` property `onValid` doesn't work.
-`onEnter` | function | Handling enter button
+`onEnter` | function | Handling enter button.
+`onFocus` | function | The function called after focus event.
+`onBlur` | function | The function called after blur (unfocus) event.
 `autofill` | bool | Turn off, turn on autofill. You can fetch "remembers" of a browser.
 `autoComplete` | string | Default autoComplete of the input. 
 `clickableKeys` | array of int | This is keyCodes of keyboard events
@@ -163,6 +167,8 @@ Property | Type | Description
 `onAdd` | function | The function returns new tag created by a user.
 `onDelete` | function | The first argument of the function  returns deleted tag. The second argument returns tag's index of deleted tag in the tags array. The third argument returns the tags.
 `onChange` | function | The function returns the array of current tags.
+`onFocus` | function | The function called after focus event.
+`onBlur` | function | The function called after blur (unfocus) event.
 `createTagOnPress` | array | keyCode of pressed buttons on keyboard.
 `disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
 `dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
