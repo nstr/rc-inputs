@@ -167,6 +167,7 @@ Property | Type | Description
 `onAdd` | function | The function returns new tag created by a user.
 `onDelete` | function | The first argument of the function  returns deleted tag. The second argument returns tag's index of deleted tag in the tags array. The third argument returns the tags.
 `onChange` | function | The function returns the array of current tags.
+`onInputChange` | function | Handler of own input typing.
 `onFocus` | function | The function called after focus event.
 `onBlur` | function | The function called after blur (unfocus) event.
 `createTagOnPress` | array | keyCode of pressed buttons on keyboard.
