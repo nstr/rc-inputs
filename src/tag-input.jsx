@@ -40,7 +40,6 @@ export default class TagInput extends React.Component{
         tagName: nextProps["inputValue"]
       });
     }
-    this.handelTag({target: {value: nextProps.inputValue}});
   }
   handelTag(e) {
     this.setState({tagName: e.target.value});
@@ -79,7 +78,7 @@ export default class TagInput extends React.Component{
         autocomplete: []
       });
     }
-    if (this.props.onInputChage) this.props.onInputChage(e);
+    if (this.props.onInputChange) this.props.onInputChange(e);
   }
   addTag() {
     const tags = this.state.tagName.length > 0 ? this.state.tags.concat([{name: this.state.tagName}]) : this.state.tags;
