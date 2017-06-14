@@ -35,11 +35,9 @@ export default class TagInput extends React.Component{
         autocomplete: nextProps["autocomplete"]
       });
     }
-    if (!!nextProps["inputValue"]) {
-      this.setState({
-        tagName: nextProps["inputValue"]
-      });
-    }
+    this.setState({
+      tagName: !!nextProps["inputValue"] ? nextProps["inputValue"] : ""
+    });
   }
   handelTag(e) {
     this.setState({tagName: e.target.value});
