@@ -170,7 +170,8 @@ Property | Type | Description
 `onInputChange` | function | Handler of own input typing.
 `onFocus` | function | The function called after focus event.
 `onBlur` | function | The function called after blur (unfocus) event.
-`createTagOnPress` | array | keyCode of pressed buttons on keyboard.
+`createTagOnKeys` | array (int) | Array of keyCodes. When you press this character on the keyboard, a tag will be created and functions `onAdd` and `onChange` will be called
+`createTagOnPress` | array | Array of characters. When you press this character on the keyboard, a tag will be created and functions `onAdd` and `onChange` will be called
 `disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
 `dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
 `autocomplete` | object | Special data for autocomplete. See schema below. 
