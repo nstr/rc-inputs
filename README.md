@@ -156,7 +156,8 @@ import "rc-inputs/styles/tag-input.css" // or tag-input.less or tag-input.scss
   onDelete={(tagIndex, tag, tags) => console.log(tagIndex, tag, tags)}
   onChange={(tags) => console.log(tags)}
   disableInput={false}
-  createTagOnPress={[13, 32]}
+  createTagOnKeys={[13, 32]}
+  createTagOnPress={[","]}
 />
 ```
 
