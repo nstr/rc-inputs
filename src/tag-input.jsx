@@ -40,7 +40,18 @@ export default class TagInput extends React.Component{
     });
   }
   handelTag(e) {
-    this.setState({tagName: e.target.value});
+
+    if (this.props.createTagOnPress) {
+      let value = e.target.value;
+      if (this.props.createTagOnPress.indexOf(value.slice(-1)) !== -1) {
+        this.addTag({target: {value: value.slice(0, -1)}});
+      } else {
+        this.setState({tagName: e.target.value});
+      }
+    } else {
+      this.setState({tagName: e.target.value});
+    }
+
     const autocomplete = this.props.autocomplete;
 
     if (!!autocomplete && !!autocomplete.items && autocomplete.items.length > 0 && e.target.value.length > 0) {
@@ -78,13 +89,13 @@ export default class TagInput extends React.Component{
     }
     if (this.props.onInputChange) this.props.onInputChange(e);
   }
-  addTag() {
-    const tags = this.state.tagName.length > 0 ? this.state.tags.concat([{name: this.state.tagName}]) : this.state.tags;
+  addTag(e) {
+    const tags = e.target.value.length > 0 ? this.state.tags.concat([{name: e.target.value}]) : this.state.tags;
     this.setState({
       tagName: "",
       tags
     });
-    if (this.props.onAdd) this.props.onAdd({name: this.state.tagName});
+    if (this.props.onAdd) this.props.onAdd({name: e.target.value});
     if (this.props.onChange) this.props.onChange(tags);
   }
   onSelect(item) {
@@ -143,7 +154,7 @@ export default class TagInput extends React.Component{
                       value={this.state.tagName}
                       placeholder={this.props.placeholder}
                       onChange={this.handelTag}
-                      clickableKeys={this.props.createTagOnPress}
+                      clickableKeys={this.props.createTagOnKeys}
                       onKeyClick={this.addTag}
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
@@ -182,10 +193,11 @@ TagInput.propTypes = {
     items: React.PropTypes.array
   }),
   disableInput: React.PropTypes.bool,
-  createTagOnPress: React.PropTypes.array
+  createTagOnPress: React.PropTypes.array,
+  createTagOnKeys: React.PropTypes.array
 };
 
 TagInput.defaultProps = {
   disableInput: false,
-  createTagOnPress: [13]
+  createTagOnKeys: [13],
 };
