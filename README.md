@@ -231,7 +231,6 @@ class SomeComponent extends React.Component{
           className: "list",
           label: "this is label:"
         }}
-        autocomplete
         tags={this.state.emails}>
         <EmailInput value={this.state.inputValue} 
           onEnter={this.addTag}
