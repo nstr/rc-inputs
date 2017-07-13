@@ -14,6 +14,7 @@ export default class TagInput extends React.Component{
     };
     this.addTag = this.addTag.bind(this);
     this.handelTag = this.handelTag.bind(this);
+    this.handleAutocomplete = this.handleAutocomplete.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.onDelete = this.onDelete.bind(this);
   }
@@ -35,13 +36,18 @@ export default class TagInput extends React.Component{
         autocomplete: nextProps["autocomplete"]
       });
     }
-    this.setState({
-      tagName: !!nextProps["inputValue"] ? nextProps["inputValue"] : ""
-    });
+
+    if (this.props.inputValue) {
+      let tagName = !!nextProps["inputValue"] ? nextProps["inputValue"] : "";
+      this.setState({
+        tagName: tagName
+      });
+      if (!!this.props.autocomplete) this.handleAutocomplete(tagName);
+    }
   }
   handelTag(e) {
     if (this.props.onInputChange) this.props.onInputChange(e);
-    
+
     if (this.props.createTagOnPress) {
       let value = e.target.value;
       if (this.props.createTagOnPress.indexOf(value.slice(-1)) !== -1) {
@@ -53,10 +59,13 @@ export default class TagInput extends React.Component{
       this.setState({tagName: e.target.value});
     }
 
+    if (!!this.props.autocomplete) this.handleAutocomplete(e.target.value);
+  }
+  handleAutocomplete(value) {
     const autocomplete = this.props.autocomplete;
 
-    if (!!autocomplete && !!autocomplete.items && autocomplete.items.length > 0 && e.target.value.length > 0) {
-      let searchQuery = e.target.value.toLowerCase();
+    if (!!autocomplete.items && autocomplete.items.length > 0 && value.length > 0) {
+      let searchQuery = value.toLowerCase();
 
       const arr = autocomplete.items.filter((el) => {
         if (!!autocomplete.searchKey) {
