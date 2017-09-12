@@ -47,6 +47,8 @@ export default class TextInput extends React.Component{
     }
   }
   render() {
+      let props = {};
+      if (this.props.onPaste) props["onPaste"] = (e) => this.props.onPaste(e.clipboardData.getData("Text"))
       return <input type={this.props.type ? this.props.type : "text"}
         ref="input"
         value={this.props.value}
@@ -54,6 +56,7 @@ export default class TextInput extends React.Component{
         placeholder={this.props.placeholder}
         onChange={this.onChange}
         onKeyUp={this.handleData}
+        {...props}
         autoComplete={this.props.autoComplete}/>;
   }
 }
@@ -65,5 +68,6 @@ TextInput.propTypes = {
   clickableKeys: React.PropTypes.array,
   onChange: React.PropTypes.func,
   onFocus: React.PropTypes.func,
-  onBlur: React.PropTypes.func
+  onBlur: React.PropTypes.func,
+  onPaste: React.PropTypes.func
 };

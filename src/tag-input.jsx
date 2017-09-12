@@ -167,6 +167,7 @@ export default class TagInput extends React.Component{
                       onKeyClick={this.addTag}
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
+                      onPaste={this.props.onPaste}
                     />
                   </li>
                 );
