@@ -36,6 +36,7 @@ Property | Type | Description
 `value` | string | Value of the input.
 `onChange` | function | The function returns the same as onChange of an average input.
 `onValid` | function | The first argument returns bool (true if the email is valid). The second argument returns the same as onChange of an average input.
+`onPaste` | function | Handler of paste event.
 `onEnter` | function | Handling enter button.
 `onFocus` | function | The function called after focus event.
 `onBlur` | function | The function called after blur (unfocus) event.
@@ -71,6 +72,7 @@ Property | Type | Description
 `pattern` | string | You can use RegExp for handle input value. 
 `onValid` | function | The first argument of the function returns bool (true if the password is valid according to your pattern). The second argument returns the same as onChange of an average input. Without `pattern` property `onValid` doesn't work.
 `onEnter` | function | Handling enter button.
+`onPaste` | function | Handler of paste event.
 `onFocus` | function | The function called after focus event.
 `onBlur` | function | The function called after blur (unfocus) event.
 `autofill` | bool | Turn off, turn on autofill. You can fetch "remembers" of a browser.
@@ -169,6 +171,7 @@ Property | Type | Description
 `onDelete` | function | The first argument of the function  returns deleted tag. The second argument returns tag's index of deleted tag in the tags array. The third argument returns the tags.
 `onChange` | function | The function returns the array of current tags.
 `onInputChange` | function | Handler of own input typing.
+`onPaste` | function | Handler of paste event.
 `onFocus` | function | The function called after focus event.
 `onBlur` | function | The function called after blur (unfocus) event.
 `createTagOnKeys` | array (int) | Array of keyCodes. When you press this character on the keyboard, a tag will be created and functions `onAdd` and `onChange` will be called
