@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default class TextInput extends React.Component{
   constructor(props) {
@@ -62,12 +63,12 @@ export default class TextInput extends React.Component{
 }
 
 TextInput.propTypes = {
-  value: React.PropTypes.string,
-  className: React.PropTypes.string,
-  autoComplete: React.PropTypes.bool,
-  clickableKeys: React.PropTypes.array,
-  onChange: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  onPaste: React.PropTypes.func
+  value: PropTypes.string,
+  className: PropTypes.string,
+  autoComplete: PropTypes.bool,
+  clickableKeys: PropTypes.array,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onPaste: PropTypes.func
 };

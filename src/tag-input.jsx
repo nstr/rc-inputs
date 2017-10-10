@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import Autocomplete from "./autocomplete";
@@ -194,17 +195,17 @@ export default class TagInput extends React.Component{
 }
 
 TagInput.propTypes = {
-  inputValue: React.PropTypes.string,
-  tags: React.PropTypes.array,
-  autocomplete: React.PropTypes.shape({
-    label: React.PropTypes.string,
-    searchKey: React.PropTypes.string,
-    searchPath: React.PropTypes.string,
-    items: React.PropTypes.array
+  inputValue: PropTypes.string,
+  tags: PropTypes.array,
+  autocomplete: PropTypes.shape({
+    label: PropTypes.string,
+    searchKey: PropTypes.string,
+    searchPath: PropTypes.string,
+    items: PropTypes.array
   }),
-  disableInput: React.PropTypes.bool,
-  createTagOnPress: React.PropTypes.array,
-  createTagOnKeys: React.PropTypes.array
+  disableInput: PropTypes.bool,
+  createTagOnPress: PropTypes.array,
+  createTagOnKeys: PropTypes.array
 };
 
 TagInput.defaultProps = {

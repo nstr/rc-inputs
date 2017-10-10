@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 
 function getRandomInt() {
@@ -116,8 +117,8 @@ export default class Select extends React.Component{
 }
 
 Select.propTypes = {
-  options: React.PropTypes.array,
-  selected: React.PropTypes.any,
-  placeholder: React.PropTypes.any,
-  listPlaceholder: React.PropTypes.any
+  options: PropTypes.array,
+  selected: PropTypes.any,
+  placeholder: PropTypes.any,
+  listPlaceholder: PropTypes.any
 };

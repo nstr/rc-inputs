@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import TextInput from "./text-input";
 
@@ -19,7 +20,7 @@ export default class EmailInput extends TextInput{
 }
 
 EmailInput.propTypes = {
-  type: React.PropTypes.string.isRequired
+  type: PropTypes.string.isRequired
 };
 
 EmailInput.defaultProps = {

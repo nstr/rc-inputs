@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import TextInput from "./text-input";
 
@@ -14,8 +15,8 @@ export default class PasswordInput extends TextInput{
 }
 
 PasswordInput.propTypes = {
-  type: React.PropTypes.string.isRequired,
-  pattern: React.PropTypes.string
+  type: PropTypes.string.isRequired,
+  pattern: PropTypes.string
 };
 
 PasswordInput.defaultProps = {
