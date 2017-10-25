@@ -83,7 +83,9 @@ export default class Select extends React.Component{
             })()
           }
         </div>
-        <ul className={this.state.isOpen ? "list open" : "list"} id={`list-${this.state.id}`}>
+        <ul className={classNames("list", this.props.dropdownClassName, {
+          "open": this.state.isOpen
+        })} id={`list-${this.state.id}`}>
           {
             this.props.options.length > 0 ? this.props.options.map((option, index) => {
               let classNames = [];

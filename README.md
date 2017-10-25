@@ -17,13 +17,13 @@ npm i rc-inputs --save
 ```jsx
 import { EmailInput } from "rc-inputs";
 
-<EmailInput 
+<EmailInput
   className={"some-class"}
   placeholder={"Please enter a valid email address."}
   value={"some value"}
   onChange={(element) => console.log("value", element.target.value)}
-  onValid={(valid, element) => console.log("valid", valid, "value", element.target.value)} 
-  onEnter={(value) => console.log(value)} 
+  onValid={(valid, element) => console.log("valid", valid, "value", element.target.value)}
+  onEnter={(value) => console.log(value)}
   autofill={true}
   autoComplete={"email"}     
 />
@@ -50,14 +50,14 @@ Property | Type | Description
 ```jsx
 import { PasswordInput } from "rc-inputs";
 
-<PasswordInput 
+<PasswordInput
   className={"some-class"}
   placeholder={"Password must be at least 6 characters"}
   value={"qwerty123"}
   onChange={(element) => console.log("value", element.target.value)}
   pattern={"^.{6,}$"}
   onValid={(valid, element) => console.log("valid", valid, "value", element.target.value)}
-  onEnter={(value) => console.log(value)} 
+  onEnter={(value) => console.log(value)}
   autofill={true}
   autoComplete={"password"}     
 />
@@ -69,14 +69,14 @@ Property | Type | Description
 `placeholder` | string | Default placeholder of the input.
 `value` | string | Value of the input.
 `onChange` | function | The function returns the same as onChange of an average input.
-`pattern` | string | You can use RegExp for handle input value. 
+`pattern` | string | You can use RegExp for handle input value.
 `onValid` | function | The first argument of the function returns bool (true if the password is valid according to your pattern). The second argument returns the same as onChange of an average input. Without `pattern` property `onValid` doesn't work.
 `onEnter` | function | Handling enter button.
 `onPaste` | function | Handler of paste event.
 `onFocus` | function | The function called after focus event.
 `onBlur` | function | The function called after blur (unfocus) event.
 `autofill` | bool | Turn off, turn on autofill. You can fetch "remembers" of a browser.
-`autoComplete` | string | Default autoComplete of the input. 
+`autoComplete` | string | Default autoComplete of the input.
 `clickableKeys` | array of int | This is keyCodes of keyboard events
 `onKeyClick` | function | Onclicks handler of `clickableKeys`
 
@@ -106,6 +106,7 @@ import "rc-inputs/styles/select.css" // or select.less or select.scss
 Property | Type | Description
 :---|:---|:---
 `className` | string | CSS classes of the Select.
+`dropdownClassName` | string | CSS classes for dropdown list of the Select.
 `activeClass` | string | CSS class for the active option
 `options` | array of string, or array of objects | In the case of using Objects, the tag requires a field `option` and in this case possible use to className and style. It is possible to to put the component in the field `option`. Example of the `option` like an Object `{option: <i className="some-class" />}` or `{option: "item 1", className: "some-class", style: {backgroundColor: "red"}}`.
 `listPlaceholder` | string or Object | This item will be shown if the list will be empty.
@@ -152,7 +153,7 @@ class App extends React.Component{
 import { TagInput } from "rc-inputs";
 import "rc-inputs/styles/tag-input.css" // or tag-input.less or tag-input.scss
 
-<TagInput 
+<TagInput
   tags={[{name: "some name", href: "https://www.some...", className: "some-tag-class", style: {color: "#fff"}}]}
   onAdd={(tag) => console.log(tag)}
   onDelete={(tagIndex, tag, tags) => console.log(tagIndex, tag, tags)}
@@ -178,7 +179,7 @@ Property | Type | Description
 `createTagOnPress` | array | Array of characters. When you press this character on the keyboard, a tag will be created and functions `onAdd` and `onChange` will be called
 `disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
 `dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
-`autocomplete` | object | Special data for autocomplete. See schema below. 
+`autocomplete` | object | Special data for autocomplete. See schema below.
 `inputValue` | string | Value setter. Use only with `autocomplete` and included input. This prop required if you want to use `autocomplete`.
 `onSelect` | function | The function returns selected tag from `autocomplete` and all used `tags`
 
@@ -235,7 +236,7 @@ class SomeComponent extends React.Component{
           label: "this is label:"
         }}
         tags={this.state.emails}>
-        <EmailInput value={this.state.inputValue} 
+        <EmailInput value={this.state.inputValue}
           onEnter={this.addTag}
           onValid={this.handleValidity} />
        </TagInput>
