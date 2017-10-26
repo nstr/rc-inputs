@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class TextInput extends React.Component{
+export default class TextInput extends React.Component {
   constructor(props) {
     super(props);
     this.handleData = this.handleData.bind(this);
@@ -14,14 +14,21 @@ export default class TextInput extends React.Component{
   }
   componentDidMount() {
     if (this.props.autofill && !this.props.defaultValue) {
-      if (this.refs.input.value !== "") this.handleData({target: this.refs.input});
-      this._listener = setInterval(function () {
-        if (this.props.value !== this.refs.input.value) this.handleData({target: this.refs.input});
-      }.bind(this), 500);
+      if (this.refs.input.value !== '')
+        this.handleData({ target: this.refs.input });
+      this._listener = setInterval(
+        function() {
+          if (this.props.value !== this.refs.input.value)
+            this.handleData({ target: this.refs.input });
+        }.bind(this),
+        500,
+      );
     }
 
-    if (this.props.onFocus) this.refs.input.addEventListener("focus", this.props.onFocus);
-    if (this.props.onBlur) this.refs.input.addEventListener("blur", this.props.onBlur);
+    if (this.props.onFocus)
+      this.refs.input.addEventListener('focus', this.props.onFocus);
+    if (this.props.onBlur)
+      this.refs.input.addEventListener('blur', this.props.onBlur);
   }
   onChange(e) {
     if (this.props.onChange) this.props.onChange(e);
@@ -30,9 +37,9 @@ export default class TextInput extends React.Component{
   handleData(e) {
     if (this.props.onEnter) {
       switch (e.keyCode) {
-      case 13:
-        this.props.onEnter(e.target.value);
-        break;
+        case 13:
+          this.props.onEnter(e.target.value);
+          break;
       }
     }
 
@@ -43,14 +50,22 @@ export default class TextInput extends React.Component{
       }
     }
 
-    if (e.keyCode === 8 && e.target.value.length === 0 && !!this.props.onRemove) {
+    if (
+      e.keyCode === 8 &&
+      e.target.value.length === 0 &&
+      !!this.props.onRemove
+    ) {
       this.props.onRemove();
     }
   }
   render() {
-      let props = {};
-      if (this.props.onPaste) props["onPaste"] = (e) => this.props.onPaste(e.clipboardData.getData("Text"))
-      return <input type={this.props.type ? this.props.type : "text"}
+    let props = {};
+    if (this.props.onPaste)
+      props['onPaste'] = e =>
+        this.props.onPaste(e.clipboardData.getData('Text'));
+    return (
+      <input
+        type={this.props.type ? this.props.type : 'text'}
         ref="input"
         value={this.props.value}
         className={this.props.className}
@@ -58,7 +73,9 @@ export default class TextInput extends React.Component{
         onChange={this.onChange}
         onKeyUp={this.handleData}
         {...props}
-        autoComplete={this.props.autoComplete}/>;
+        autoComplete={this.props.autoComplete}
+      />
+    );
   }
 }
 
@@ -70,5 +87,5 @@ TextInput.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onPaste: PropTypes.func
+  onPaste: PropTypes.func,
 };
