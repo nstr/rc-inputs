@@ -79,18 +79,10 @@ export default class Select extends React.Component {
           id={`current-${this.state.id}`}
           style={this.state.selected ? this.state.selected.style : null}
         >
-          {(() => {
-            if (this.state.selected && this.state.selected.option) {
-              return this.state.selected.option;
-            } else {
-              return this.state.selected;
-            }
-          })()}
-          {(() => {
-            if (this.props.customeArrow) {
-              return this.props.customeArrow;
-            }
-          })()}
+          {this.state.selected && this.state.selected.option
+            ? this.state.selected.option
+            : this.state.selected}
+          {this.props.customeArrow && this.props.customeArrow}
         </div>
         <ul
           className={classNames('list', this.props.dropdownClassName, {

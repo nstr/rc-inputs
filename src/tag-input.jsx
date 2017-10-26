@@ -170,24 +170,20 @@ export default class TagInput extends React.Component {
               </li>
             );
           })}
-          {(() => {
-            if (!this.props.disableInput) {
-              return (
-                <li className="input-area">
-                  <TextInput
-                    value={this.state.tagName}
-                    placeholder={this.props.placeholder}
-                    onChange={this.handelTag}
-                    clickableKeys={this.props.createTagOnKeys}
-                    onKeyClick={this.addTag}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    onPaste={this.props.onPaste}
-                  />
-                </li>
-              );
-            }
-          })()}
+          {!this.props.disableInput && (
+            <li className="input-area">
+              <TextInput
+                value={this.state.tagName}
+                placeholder={this.props.placeholder}
+                onChange={this.handelTag}
+                clickableKeys={this.props.createTagOnKeys}
+                onKeyClick={this.addTag}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                onPaste={this.props.onPaste}
+              />
+            </li>
+          )}
           {this.props.children}
         </ul>
         {!!this.props.autocomplete && this.state.autocomplete.length > 0 ? (
