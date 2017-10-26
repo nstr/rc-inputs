@@ -20,10 +20,11 @@ export default class TagInput extends React.Component {
     this.onDelete = this.onDelete.bind(this);
   }
   componentDidMount() {
+    const { tagInput } = this.refs;
     if (this.props.dynamicInputWidth) {
-      this.refs.tagInput.style.display = 'flex';
-      this.refs.tagInput.style.flexWrap = 'wrap';
-      this.refs.tagInput.lastChild.style.flex = '1 1';
+      tagInput.style.display = 'flex';
+      tagInput.style.flexWrap = 'wrap';
+      tagInput.lastChild.style.flex = '1 1';
     }
   }
   componentWillReceiveProps(nextProps) {
