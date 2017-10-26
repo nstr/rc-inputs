@@ -117,7 +117,6 @@ export default class Select extends React.Component {
                   key={`${this.state.id}-option-${index}`}
                   style={option.style}
                   className={classNames.join(' ')}
-                  style={option.style}
                   onClick={this.selectOption.bind(this, option, index)}
                 >
                   {option.option ? option.option : option}
@@ -128,7 +127,6 @@ export default class Select extends React.Component {
             <li
               style={this.props.listPlaceholder.style}
               className={this.props.listPlaceholder.className}
-              style={this.props.listPlaceholder.style}
             >
               {this.props.listPlaceholder.option
                 ? this.props.listPlaceholder.option
