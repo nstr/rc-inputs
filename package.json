@@ -1,6 +1,6 @@
 {
   "name": "rc-inputs",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Special inputs for React JS",
   "main": "lib/index.js",
   "scripts": {

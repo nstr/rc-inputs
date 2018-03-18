@@ -57,6 +57,7 @@ export default class TextInput extends React.Component{
         placeholder={this.props.placeholder}
         onChange={this.onChange}
         onKeyUp={this.handleData}
+        autoCapitalize={this.props.autoCapitalize}
         {...props}
         autoComplete={this.props.autoComplete}/>;
   }
@@ -72,3 +73,7 @@ TextInput.propTypes = {
   onBlur: PropTypes.func,
   onPaste: PropTypes.func
 };
+
+TextInput.defaultProps = {
+  autoCapitalize: "off"
+}
