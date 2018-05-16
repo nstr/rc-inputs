@@ -99,15 +99,14 @@ export default class Select extends React.Component{
                 <li key={`${this.state.id}-option-${index}`}
                   style={option.style}
                   className={classNames.join(" ")}
-                  style={option.style}
                   onClick={this.selectOption.bind(this, option, index)}>
                   {option.option ? option.option : option}
                 </li>
               );
             }) : this.props.listPlaceholder ? (
-              <li style={this.props.listPlaceholder.style}
-                className={this.props.listPlaceholder.className}
-                style={this.props.listPlaceholder.style}>
+              <li
+                style={this.props.listPlaceholder.style}
+                className={this.props.listPlaceholder.className}>
                 {this.props.listPlaceholder.option ? this.props.listPlaceholder.option : this.props.listPlaceholder}
               </li>
             ) : null
@@ -120,6 +119,15 @@ export default class Select extends React.Component{
 
 Select.propTypes = {
   options: PropTypes.array,
+  onChange: PropTypes.func,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+  ]),
+  activeIndex: PropTypes.number,
+  activeClass: PropTypes.string,
+  dropdownClassName: PropTypes.string,
+  customeArrow: PropTypes.any,
   selected: PropTypes.any,
   placeholder: PropTypes.any,
   listPlaceholder: PropTypes.any

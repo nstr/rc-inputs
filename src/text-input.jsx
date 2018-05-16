@@ -49,7 +49,7 @@ export default class TextInput extends React.Component{
   }
   render() {
       let props = {};
-      if (this.props.onPaste) props["onPaste"] = (e) => this.props.onPaste(e.clipboardData.getData("Text"))
+      if (this.props.onPaste) props["onPaste"] = (e) => this.props.onPaste(e.clipboardData.getData("Text"));
       return <input type={this.props.type ? this.props.type : "text"}
         ref="input"
         value={this.props.value}
@@ -64,16 +64,24 @@ export default class TextInput extends React.Component{
 }
 
 TextInput.propTypes = {
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
   value: PropTypes.string,
+  defaultValue: PropTypes.string,
   className: PropTypes.string,
   autoComplete: PropTypes.bool,
   clickableKeys: PropTypes.array,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onPaste: PropTypes.func
+  onPaste: PropTypes.func,
+  onRemove: PropTypes.func,
+  onKeyClick: PropTypes.func,
+  onEnter: PropTypes.func,
+  autoCapitalize: PropTypes.any,
+  autofill: PropTypes.bool
 };
 
 TextInput.defaultProps = {
   autoCapitalize: "off"
-}
+};

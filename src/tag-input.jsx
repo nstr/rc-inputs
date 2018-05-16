@@ -136,7 +136,7 @@ export default class TagInput extends React.Component{
   render() {
 
     return (
-      <div className="rc-input-wrap">
+      <div className={classNames("rc-input-wrap", this.props.classNameWrap)}>
         <ul className={classNames("rc-tag-input", this.props.className)} ref="tagInput">
           {
             this.state.tags.map((tag, index) => {
@@ -195,17 +195,34 @@ export default class TagInput extends React.Component{
 }
 
 TagInput.propTypes = {
+  children: PropTypes.node,
   inputValue: PropTypes.string,
+  placeholder: PropTypes.string,
   tags: PropTypes.array,
   autocomplete: PropTypes.shape({
     label: PropTypes.string,
     searchKey: PropTypes.string,
     searchPath: PropTypes.string,
-    items: PropTypes.array
+    items: PropTypes.array,
+    className: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+    ])
   }),
   disableInput: PropTypes.bool,
   createTagOnPress: PropTypes.array,
-  createTagOnKeys: PropTypes.array
+  createTagOnKeys: PropTypes.array,
+  className: PropTypes.string,
+  classNameWrap: PropTypes.string,
+  dynamicInputWidth: PropTypes.bool,
+  onInputChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  onPaste: PropTypes.func,
+  onChange: PropTypes.func,
+  onDelete: PropTypes.func,
+  onAdd: PropTypes.func,
+  onSelect: PropTypes.func,
 };
 
 TagInput.defaultProps = {
