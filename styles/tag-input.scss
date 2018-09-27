@@ -6,6 +6,11 @@
   background: #fff;
   border: solid 1px #eee;
 
+  li {
+    float: left;
+    display: inline-block;
+  }
+
   .tag {
     position: relative;
     float: left;

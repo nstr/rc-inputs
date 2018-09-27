@@ -10,7 +10,7 @@ export default class TagInput extends React.Component{
     super(props);
     this.state = {
       tagName: !!this.props.inputValue ? this.props.inputValue : "",
-      autocomplete: [],
+      autocompleteItems: [],
       tags: this.props.tags ? this.props.tags : []
     };
     this.addTag = this.addTag.bind(this);
@@ -25,6 +25,14 @@ export default class TagInput extends React.Component{
       this.refs.tagInput.style.flexWrap = "wrap";
       this.refs.tagInput.lastChild.style.flex = "1 1";
     }
+
+    if (this.props.inputValue) {
+      let tagName = this.props.inputValue;
+      this.setState({
+        tagName: tagName
+      });
+      if (!!this.props.autocomplete) this.handleAutocomplete(tagName);
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (!!nextProps["tags"]) {
@@ -32,10 +40,27 @@ export default class TagInput extends React.Component{
         tags: nextProps.tags
       });
     }
-    if (!!nextProps["autocomplete"]) {
-      this.setState({
-        autocomplete: nextProps["autocomplete"]
-      });
+
+    if (!!nextProps["autocomplete"] && nextProps["autocomplete"].items) {
+      if (nextProps.tags.length === 0 && nextProps.showAutocomplete) {
+        this.setState({
+          autocompleteItems: nextProps["autocomplete"].items
+        });
+      }
+
+      if (nextProps.tags.length > 0 && nextProps.showAutocomplete) {
+        this.setState({
+          autocompleteItems: nextProps["autocomplete"].items.filter(item => {
+            return !nextProps.tags.find(tag => JSON.stringify(tag) === JSON.stringify(item));
+          })
+        });
+      }
+
+      if (this.props.showAutocomplete && nextProps.showAutocomplete !== this.props.showAutocomplete) {
+        this.setState({
+          autocompleteItems: []
+        });
+      }
     }
 
     if (this.props.inputValue) {
@@ -44,6 +69,12 @@ export default class TagInput extends React.Component{
         tagName: tagName
       });
       if (!!this.props.autocomplete) this.handleAutocomplete(tagName);
+    }
+
+    if (!this.props.inputValue && !nextProps.showAutocomplete) {
+      this.setState({
+        autocompleteItems: []
+      });
     }
   }
   handelTag(e) {
@@ -90,12 +121,11 @@ export default class TagInput extends React.Component{
       });
 
       this.setState({
-        autocomplete: arr
+        autocompleteItems: arr
       });
-    }
-    else {
-      this.setState({
-        autocomplete: []
+    } else {
+      if (!this.props.showAutocomplete) this.setState({
+        autocompleteItems: []
       });
     }
   }
@@ -112,7 +142,7 @@ export default class TagInput extends React.Component{
     const tags = this.state.tags.concat([item]);
 
     this.setState({
-      autocomplete: this.state.autocomplete.filter((i) => JSON.stringify(i) !== JSON.stringify(item)),
+      autocompleteItems: this.state.autocompleteItems.filter((i) => JSON.stringify(i) !== JSON.stringify(item)),
       tagName: "",
       tags
     });
@@ -134,6 +164,15 @@ export default class TagInput extends React.Component{
     if (this.props.onChange) this.props.onChange(tags);
   }
   render() {
+    const autocomplete = <Autocomplete
+      renderItem={this.props.renderAutocompleteItem}
+      onSelect={this.onSelect}
+      className={classNames("rc-tag-input", this.props.autocomplete && this.props.autocomplete.className)}
+      autocomplete={this.state.autocompleteItems}
+      label={this.props.autocomplete && this.props.autocomplete.label}
+    />;
+    const autocompleteIsShown = this.props.showAutocomplete !== null ? this.props.showAutocomplete :
+    !!this.props.autocomplete && this.state.autocompleteItems.length > 0;
 
     return (
       <div className={classNames("rc-input-wrap", this.props.classNameWrap)}>
@@ -156,38 +195,34 @@ export default class TagInput extends React.Component{
             })
           }
           {
-            (() => {
-              if (!this.props.disableInput) {
-                return (
-                  <li className="input-area">
-                    <TextInput
-                      value={this.state.tagName}
-                      placeholder={this.props.placeholder}
-                      onChange={this.handelTag}
-                      clickableKeys={this.props.createTagOnKeys}
-                      onKeyClick={this.addTag}
-                      onFocus={this.props.onFocus}
-                      onBlur={this.props.onBlur}
-                      onPaste={this.props.onPaste}
-                    />
-                  </li>
-                );
-              }
-            })()
-          }
-          {
-            this.props.children
+            this.props.children ? (
+              <li>
+                {this.props.children}
+                {
+                  autocompleteIsShown && this.props.autocomplete.isUnderInput && autocomplete
+                }
+              </li>
+            ) : (
+              <li className="input-area">
+                <TextInput
+                  value={this.state.tagName}
+                  placeholder={this.props.placeholder}
+                  onChange={this.handelTag}
+                  clickableKeys={this.props.createTagOnKeys}
+                  onKeyClick={this.addTag}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  onPaste={this.props.onPaste}
+                />
+                {
+                  autocompleteIsShown && this.props.autocomplete.isUnderInput && autocomplete
+                }
+              </li>
+            )
           }
         </ul>
         {
-          !!this.props.autocomplete && this.state.autocomplete.length > 0 ? (
-            <Autocomplete
-              onSelect={this.onSelect}
-              className={classNames("rc-tag-input", this.props.autocomplete.className)}
-              autocomplete={this.state.autocomplete}
-              label={this.props.autocomplete.label}
-            />
-          ) : null
+          autocompleteIsShown && !this.props.autocomplete.isUnderInput && autocomplete
         }
       </div>
     );
@@ -207,8 +242,11 @@ TagInput.propTypes = {
     className: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.array,
-    ])
+    ]),
+    isUnderInput: PropTypes.bool
   }),
+  renderAutocompleteItem: PropTypes.func,
+  showAutocomplete: PropTypes.any,
   disableInput: PropTypes.bool,
   createTagOnPress: PropTypes.array,
   createTagOnKeys: PropTypes.array,
@@ -227,5 +265,6 @@ TagInput.propTypes = {
 
 TagInput.defaultProps = {
   disableInput: false,
+  showAutocomplete: null,
   createTagOnKeys: [13],
 };

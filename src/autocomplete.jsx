@@ -30,10 +30,14 @@ export default class Autocomplete extends React.Component {
               props["target"] = "_blank";
             }
             return(
-              <li key={`item-${index}`} className={classNames("tag", "item", item.className)} style={item.style}>
-                <a className="name" {...props} onClick={this.onSelect.bind(this, item)}>
-                  {item.name ? item.name : item}
-                </a>
+              <li key={`item-${index}`} className={classNames("tag", "item", item.className)} style={item.style} onClick={this.onSelect.bind(this, item)}>
+                {
+                  this.props.renderItem ? this.props.renderItem(item) : (
+                    <a className="name" {...props}>
+                      {item.name ? item.name : item}
+                    </a>
+                  )
+                }
               </li>
             );
           })
@@ -47,6 +51,7 @@ Autocomplete.propTypes = {
   autocomplete: PropTypes.array,
   label: PropTypes.string,
   onSelect: PropTypes.func,
+  renderItem: PropTypes.func,
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,

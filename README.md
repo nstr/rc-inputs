@@ -181,8 +181,10 @@ Property | Type | Description
 `disableInput` | bool | You can hide input. In this case `TagInput` will be just for reading.
 `dynamicInputWidth` | bool | The prop makes any inner input(custom or default) stretched on all remaining width. The default is false.
 `autocomplete` | object | Special data for autocomplete. See schema below.
+`showAutocomplete` | bool | An alternative way to show and hide an indenture autocomplete.
 `inputValue` | string | Value setter. Use only with `autocomplete` and included input. This prop required if you want to use `autocomplete`.
 `onSelect` | function | The function returns selected tag from `autocomplete` and all used `tags`
+`renderAutocompleteItem` | function | The function for render custom autocomplete items.
 
 Autocomplete Schema
 
@@ -192,6 +194,7 @@ Property | Type | Description
 `searchKey` | string | If you are using objects in `items` you will have to select key of an object on which will be searched.
 `searchPath` | string | Completely the same as `searchKey` but works for the deep key. Use dots for going deeper. For exemple key for object `{test: {abc: 123}}` will be `test.abc`. Attention! It doesn't work with `searchKey`.
 `label` | string | text in the begin of the autocomplete list.
+`isUnderInput` | bool | Show autocomplete under input (on another line).
 
 Also exist posobility include some elements into TagInput. In this way, the elements will be added after all elements of TagInput. If you are using autocomplete, don't forget `inputValue`. Usage example: Add EmailInput Component with handling valid emails.
 

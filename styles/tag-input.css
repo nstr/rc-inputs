@@ -6,6 +6,10 @@
   background: #fff;
   border: solid 1px #eee;
 }
+.rc-tag-input li {
+  float: left;
+  display: inline-block;
+}
 .rc-tag-input .tag {
   position: relative;
   float: left;
